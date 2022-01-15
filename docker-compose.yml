@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  backend-1:
+    container_name: backend-1
+    image: rainover922/housy-backend:1.0
+    ports:
+      - 5000:5000
+  backend-2:
+    container_name: backend-2
+    image: rainover922/housy-backend:1.0
+    ports:
+      - 5100:5000
+  backend-3:
+    container_name: backend-3
+    image: rainover922/housy-backend:1.0
+    ports:
+      - 5200:5000
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-database
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=housy
+      - MYSQL_ROOT_HOST=%
+    ports:
+      - 3306:3306
+    volumes:
+      - /home/ridwan/mysql/data:/var/lib/mysql
+
+  postgresql:
+    image: postgres:latest
+    container_name: pgsql-database
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    ports:
+      - 5432:5432
+    volumes:
+      - /home/ridwan/pgsql/data:/var/lib/postgresql/data/
